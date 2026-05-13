@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -63,6 +64,16 @@ public class Main {
         System.out.println(playersList);
         playersList.sort((a, b) -> a.getKey().compareTo(b.getKey()));
 
-
+        List<String> player = List.of(
+                "max",
+                "ivan",
+                "anna",
+                "oleg",
+                "mia",
+                "alexander",
+                "leo"
+        );
+        List<String> result = player.stream().filter(a -> a.length() > 3).map(a -> a.substring(0, 1).toUpperCase() + a.substring(1))
+                .sorted((a, b) -> a.length() - b.length()).toList();
     }
 }
