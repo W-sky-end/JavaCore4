@@ -75,5 +75,41 @@ public class Main {
         );
         List<String> result = player.stream().filter(a -> a.length() > 3).map(a -> a.substring(0, 1).toUpperCase() + a.substring(1))
                 .sorted((a, b) -> a.length() - b.length()).toList();
+
+        List<String> logs = List.of(
+                "max joined",
+                "ivan left",
+                "anna joined",
+                "mia joined",
+                "oleg banned",
+                "leo joined",
+                "bob left"
+        );
+        Set<String> joined = logs.stream().filter(a -> a.endsWith("joined")).collect(Collectors.toSet());
+        Set<String> collect = joined.stream().map(a -> a.split(" ")[0]).collect(Collectors.toSet());
+        Set<String> result2 = collect.stream()
+                .map(a -> a.substring(0, 1).toUpperCase() + a.substring(1))
+                .sorted()
+                .collect(Collectors.toSet());
+        System.out.println(result2);
+
+        List<String> items = List.of(
+                "sword:rare",
+                "potion:common",
+                "shield:epic",
+                "bow:rare",
+                "apple:common",
+                "staff:epic",
+                "dagger:common"
+        );
+
+        List<String> graduation = items.stream()
+                .filter(a -> a.endsWith("rare") || a.endsWith("epic")).toList();
+        List<String> finalEdit = graduation.stream()
+                .map(a -> a.split(":")[0]).map(a -> a.substring(0, 1).toUpperCase() + a.substring(1))
+                .sorted((a, b) -> a.length() - b.length()).toList();
+        System.out.println(finalEdit);
+
+
     }
 }
