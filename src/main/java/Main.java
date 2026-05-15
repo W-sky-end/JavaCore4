@@ -109,6 +109,24 @@ public class Main {
                 .map(a -> a.split(":")[0]).map(a -> a.substring(0, 1).toUpperCase() + a.substring(1))
                 .sorted((a, b) -> a.length() - b.length()).toList();
         System.out.println(finalEdit);
+        List<String> loot = List.of(
+                "sword:rare",
+                "potion:common",
+                "shield:epic",
+                "bow:rare",
+                "apple:common",
+                "staff:epic",
+                "dagger:rare",
+                "ring:epic",
+                "potion:rare",
+                "apple:rare"
+        );
+        List<String> lootEdit = loot.stream().filter(a -> a.endsWith("epic")).map(a->a.split(":")[0])
+                .map(a->a.substring(0,1).toUpperCase() + a.substring(1)).sorted().distinct().toList();
+        Map<String, Long> rarityCount = loot.stream()
+                .map(a -> a.split(":")[1])
+                .collect(Collectors.groupingBy(x -> x, Collectors.counting()));
+
 
 
     }
